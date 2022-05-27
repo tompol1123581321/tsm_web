@@ -1,6 +1,5 @@
-import { AppBar, Box, Drawer, List } from "@mui/material";
+import { AppBar, Box, Drawer, Grid, List } from "@mui/material";
 import * as React from "react";
-import { ChartList } from "./ChartList";
 import { CreateChartForm } from "./CreateChartForm";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -27,23 +26,42 @@ export const data = {
 };
 
 export const Body = () => {
+  const hasChartSetUp: boolean = true;
+  // when true user can edit chart and post data and export data
+  // when false user must create new chart
+
   return (
     <Box
       sx={{
-        position: "static",
-        width: "100vw",
-        height: "100vh",
+        minWidth: "100vw",
+        minHeight: "100vh",
         backgroundColor: "white",
         display: "flex",
         alignItems: "center",
       }}
     >
-      <ChartList />
-      {/* <Doughnut
-        style={{ maxWidth: "30rem", maxHeight: "30rem", fontSize: "3rem" }}
-        data={data}
-      /> */}
-      <CreateChartForm />
+      {hasChartSetUp ? (
+        <Grid minWidth="100vw" container>
+          <Grid sm={12} md={6} lg={6} xs={12} item>
+            <Doughnut
+              style={{
+                margin: "auto",
+                maxWidth: "30rem",
+                maxHeight: "30rem",
+                fontSize: "3rem",
+              }}
+              data={data}
+            />
+          </Grid>
+          <Grid sm={12} md={4} lg={4} xs={12} item>
+            <CreateChartForm />
+          </Grid>
+        </Grid>
+      ) : (
+        // welcome page and create ypur chart page
+        // animations and wizard
+        "Welcome"
+      )}
     </Box>
   );
 };

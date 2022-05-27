@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { LogInIcon } from "./LogInIcon";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 export const MenuBar = () => {
   return (
@@ -15,7 +16,12 @@ export const MenuBar = () => {
       }}
     >
       <Typography sx={{ marginX: "1rem" }}>LOGO</Typography>
-      <LogInIcon />
+      <Box
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <SettingsIcon />
+        <LogInIcon />
+      </Box>
     </Box>
   );
 };
